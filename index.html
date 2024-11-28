@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="agregarCarritoUno()">agregar al carrito producto 1</button>
+    <button onclick="agregarCarritoDos()">agregar al carrito producto 2</button>
+    <button onclick="eliminarCarritoUno()">eliminar del carrito producto 1</button>
+    <button onclick="eliminarCarritoDos()">eliminar del carrito producto 2</button>
+    <div id="carrito">
+    </div>
+    <button id="limpiar" onclick="limpiar()">limpiar carrito</button>
+    <script src="carrito.js"></script>
+    <!--script src="carrito.min.js"></script-->
+    <script>
+        console.log('cargo');
+        
+        const carrito = new Carrito('carrito')
+        const tablero = document.getElementById('carrito')
+        tablero.textContent = JSON.stringify(carrito.getCarrito())
+
+        const productoUno = {
+            nombre: 'celular',
+            precio: 200000,
+            id: 23
+        }
+        const productoDos = {
+            nombre: 'movil',
+            precio: 300000,
+            id: 25
+        }
+
+        function agregarCarritoUno() {
+            carrito.addCarrito(productoUno, 1)
+            tablero.textContent = JSON.stringify(carrito.getCarrito())
+        }
+
+        function agregarCarritoDos() {
+            carrito.addCarrito(productoDos, 1)
+            tablero.textContent = JSON.stringify(carrito.getCarrito())
+        }
+
+        function eliminarCarritoUno() {
+            carrito.deleteProduct(productoUno)
+            tablero.textContent = JSON.stringify(carrito.getCarrito())
+        }
+
+        function eliminarCarritoDos() {
+            carrito.deleteProduct(productoDos)
+            tablero.textContent = JSON.stringify(carrito.getCarrito())
+        }
+
+        function limpiar() {
+            carrito.limpiarCarrito()
+            tablero.textContent = JSON.stringify(carrito.getCarrito())
+        }
+    </script>
+</body>
+</html>
